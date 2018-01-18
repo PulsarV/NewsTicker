@@ -8,11 +8,7 @@ $(document).ready(function() {
       timerValue--;
       timeIndicator.text(timerValue + 's');
     } else {
-      refreshPage();
+      location.reload();
     }
-  }
-
-  function refreshPage() {
-    location.reload();
   }
 });
