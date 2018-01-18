@@ -1,0 +1,29 @@
+home_page:
+    route: '/'
+    method: ['GET']
+    controller: 'Default'
+    action: 'index'
+
+twitter_login:
+    route: '/twitter/login'
+    method: ['GET']
+    controller: 'Twitter'
+    action: 'login'
+
+twitter_logout:
+    route: '/twitter/logout'
+    method: ['GET']
+    controller: 'Twitter'
+    action: 'logout'
+
+twitter_callback:
+    route: '/twitter/callback'
+    method: ['GET']
+    controller: 'Twitter'
+    action: 'callback'
+
+twitter_statuses:
+    route: '/twitter/statuses'
+    method: ['GET']
+    controller: 'Twitter'
+    action: 'statuses'

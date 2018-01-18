@@ -1,0 +1,36 @@
+{
+    "name": "Voffka/NewsTicker",
+    "version": "1.0.0",
+    "license": "MIT",
+    "type": "project",
+
+    "autoload": {
+        "psr-4": {"NewsTicker\\": "src/"}
+    },
+
+    "classmap": [
+        "app/AppKernel.php",
+        "app/AppCache.php"
+    ],
+
+    "require": {
+        "incenteev/composer-parameter-handler": "~2.0",
+        "abraham/twitteroauth": "^0.7.4",
+        "twig/twig": "^2.0"
+    },
+
+    "scripts": {
+        "post-install-cmd": [
+            "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters"
+        ],
+        "post-update-cmd": [
+            "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters"
+        ]
+    },
+
+    "extra": {
+        "incenteev-parameters": {
+            "file": "config/parameters.yml"
+        }
+    }
+}

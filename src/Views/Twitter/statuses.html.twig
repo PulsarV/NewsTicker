@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Welcome News Ticker!</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="row" style="padding: 40px 0;">
+            <div class="col-lg-6">
+                <h3 style="margin-top: 0;"><span class="label label-info time-indicator">{{ refresh_timeout }}s</span></h3>
+            </div>
+            <div class="col-lg-6">
+                <a href="{{ logout_url }}" class="btn btn-warning pull-right">Logout</a>
+            </div>
+
+        </div>
+        <div class="row">
+            {% if errors is defined %}
+                {% for error in errors %}
+                    <div class="row">
+                        <div class="panel panel-danger">
+                            <div class="panel-heading">
+                                <h4>Error</h4>
+                            </div>
+                            <div class="panel-body">
+                                {{ error.message }}
+                            </div>
+                            <div class="panel-footer">
+                                Code: {{ error.code }}
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endif %}
+
+            {% if statuses is defined %}
+                {% for status in statuses %}
+                    <div class="row">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <h4>{{ status.user_name }} @ {{ status.user_screen_name }}</h4>
+                            </div>
+                            <div class="panel-body">
+                                {{ status.text }}
+                            </div>
+                            <div class="panel-footer">
+                                at {{ status.created_at }}
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+    <script src="/js/twitter.js"></script>
+</body>
+</html>
