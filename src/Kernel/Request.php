@@ -70,7 +70,7 @@ class Request
     /**
      * @return string
      */
-    public function getScheme(): string
+    public function getScheme()
     {
         return self::$scheme;
     }
@@ -78,7 +78,7 @@ class Request
     /**
      * @return string
      */
-    public function getHost(): string
+    public function getHost()
     {
         return self::$host;
     }
@@ -86,7 +86,7 @@ class Request
     /**
      * @return string
      */
-    public function getPort(): string
+    public function getPort()
     {
         return self::$port;
     }

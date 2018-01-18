@@ -51,7 +51,7 @@ final class Container
         }
 
         if (isset(self::$parameters[$parameterName])) {
-            throw new \Exception(   'Parameter "'.$parameterName.'" already exists in container');
+            throw new \Exception('Parameter "'.$parameterName.'" already exists in container');
         }
 
         self::$parameters[$parameterName] = $parameterValue;
