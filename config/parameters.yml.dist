@@ -1,0 +1,5 @@
+parameters:
+    twitter_login_url: 'http://localhost/twitter_login.php'
+    twitter_oauth_key: ''
+    twitter_oauth_secret: ''
+    twitter_statuses_count: 25
