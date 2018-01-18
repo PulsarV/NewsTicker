@@ -108,6 +108,27 @@ class TwitterController extends Controller
             'count' => $this->getParameter('twitter_statuses_count') + 1,
         ]);
 
+        if (!is_array($statuses)) {
+            $statusesArr = get_object_vars($statuses);
+            $errors = isset($statusesArr['errors']) ? $statusesArr['errors'] : [];
+
+            $errorsArr = [];
+
+            foreach ($errors as $key => $error) {
+                $errorArr = get_object_vars($error);
+
+                $errorsArr[$key]['message'] = $errorArr['message'];
+                $errorsArr[$key]['code'] = $errorArr['code'];
+            }
+
+            return new Response($this->render('Twitter/statuses.html.twig', [
+                'errors' => $errorsArr,
+                'logout_url' => $this->generateUrl('twitter_logout'),
+                'refresh_timeout' => $this->getParameter('twitter_refresh_timeout'),
+            ]));
+
+        }
+
         $statusesArr = [];
 
         foreach ($statuses as $key => $status) {
@@ -119,6 +140,10 @@ class TwitterController extends Controller
             $statusesArr[$key]['text'] = $statusArr['text'];
         }
 
-        return new JsonResponse($statusesArr);
+        return new Response($this->render('Twitter/statuses.html.twig', [
+            'statuses' => $statusesArr,
+            'logout_url' => $this->generateUrl('twitter_logout'),
+            'refresh_timeout' => $this->getParameter('twitter_refresh_timeout'),
+        ]));
     }
 }

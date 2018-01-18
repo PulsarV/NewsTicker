@@ -3,3 +3,4 @@ parameters:
     twitter_oauth_key: ''
     twitter_oauth_secret: ''
     twitter_statuses_count: 25
+    twitter_refresh_timeout: 60
