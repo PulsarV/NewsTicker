@@ -103,7 +103,8 @@ class Kernel
 
             return $response;
         } catch (\Exception $e) {
-            echo 'ERROR: '.$e->getMessage();
+//            echo 'ERROR: '.$e->getMessage();
+            return new Response('', $e->getCode()?:500);
         }
     }
 }

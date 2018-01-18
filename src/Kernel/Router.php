@@ -52,21 +52,21 @@ class Router
 
                 $suppotedMethods = array_map('strtoupper', $this->routes[$name]['method']);
                 if (!in_array($this->request->getMethod(), $suppotedMethods)) {
-                    throw new \Exception('Unsupported request method "'.$this->request->getMethod().'"');
+                    throw new \Exception('Unsupported request method "'.$this->request->getMethod().'"', 405);
                 }
 
                 $controllerClass = 'NewsTicker\Controllers\\'.ucfirst($this->routes[$name]['controller'].'Controller');
                 if (class_exists($controllerClass)) {
                     $this->controller = new $controllerClass($this->request);
                 } else {
-                    throw new \Exception('Controller "'.$controllerClass.'" not found');
+                    throw new \Exception('Controller "'.$controllerClass.'" not found', 500);
                 }
 
                 $controllerAction = $this->routes[$name]['action'].'Action';
                 if (method_exists($controllerClass, $controllerAction)) {
                     $this->action = $controllerAction;
                 }  else {
-                    throw new \Exception('Action "'.$controllerAction.'" not found in controller "'.$controllerClass.'"');
+                    throw new \Exception('Action "'.$controllerAction.'" not found in controller "'.$controllerClass.'"', 500);
                 }
 
                 break;
@@ -74,7 +74,7 @@ class Router
         }
 
         if (!($this->name)) {
-            throw new \Exception('Route "'.$this->request->getUri().'" is not defined');
+            throw new \Exception('Route "'.$this->request->getUri().'" is not defined', 404);
         }
     }
 
